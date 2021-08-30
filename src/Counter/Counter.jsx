@@ -7,23 +7,32 @@ function Counter() {
 
   const addToCounter = () => {
     setCounterValue(counterValue + inputValue);
-  }
-  
+  };
+
   const subtractFromCounter = () => {
     setCounterValue(counterValue - inputValue);
-  }
+  };
 
   return (
     <div>
       <h3 data-testid="header">My Counter</h3>
-      <h2 data-testid="counter">{counterValue}</h2>
-      <button data-testid="subtract-btn" onClick={subtractFromCounter}>-</button>
+      <h2
+        data-testid="counter"
+        className={`${counterValue >= 100 ? "green" : ""}${
+          counterValue <= -100 ? "red" : ""
+        }`}
+      >
+        {counterValue}
+      </h2>
+      <button data-testid="subtract-btn" onClick={subtractFromCounter}>
+        -
+      </button>
       <input
         type="number"
         data-testid="input"
         value={inputValue}
         className="text-center"
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={(e) => setInputValue(parseInt(e.target.value))}
       />
       <button data-testid="add-btn" onClick={addToCounter}>
         +
